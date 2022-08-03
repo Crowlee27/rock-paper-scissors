@@ -17,32 +17,59 @@ run again
 
 
 function getComputerChoice() {
-  const randomHand = Math.floor(Math.random() * 3);
-  if (randomHand === 0) {
+  const computerHand = Math.floor(Math.random() * 3 + 1);
+  if (computerHand === 1) {
     return "Rock";
-  } else if (randomHand === 1) {
+  } else if (computerHand === 2) {
     return "Paper";
-  } else if (randomHand === 2) {
+  } else if (computerHand === 3) {
     return "Scissor";
   }
 }
 
-function computerSelection() {
-  return getComputerChoice();
-}
+const computerSelection = getComputerChoice()
+
 
 function playerSelection() {
-  let myHand = prompt("Please pick a hand");
-  let myHand2 = myHand.charAt(0).toUpperCase() + myHand.slice(1).toLowerCase();
-  if (myHand2 === "Rock") {
-    return "Rock";
-  } else if (myHand2 === "Paper") {
-    return "Paper";
-  } else if (myHand2 === "Scissor") {
-    return "Scissor";
+  const playerChoice = prompt("Please pick a hand");
+  const playerHand = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+    if (playerHand === "Rock") {
+      return "Rock";
+    }
+    else if (playerHand === "Paper") {
+      return "Paper";
+    }
+    else if (playerHand === "Scissors") {
+      return "Scissors";
+    }
+}
+
+
+function playRound() {
+  if (playerSelection() === computerSelection) {
+    return "It's a tie!";
+  }
+  else if (playerSelection() === "Rock" && computerSelection === "Paper") {
+    return "You lose, Paper beats Rock!";
+  }
+  else if (playerSelection() === "Rock" && computerSelection === "Scissors") {
+    return "You win, Rock beats Scissors";
+  }
+  else if (playerSelection() === "Paper" && computerSelection === "Scissors") {
+    return "You lose, Scissors beats Paper!";
+  }
+  else if (playerSelection() === "Paper" && computerSelection === "Rock") {
+    return "You win, Paper beats Rock";
+  }
+  else if (playerSelection() === "Scissors" && computerSelection === "Rock") {
+    return "You lose, Rock beats Scissors!";
+  }
+  else if (playerSelection() === "Scissors" && computerSelection === "Paper") {
+    return "You win, Scissors beats Paper";
+  }
+  else {
+    return "something went wrong"
   }
 }
 
-function singleGame() {}
 
-console.log(playerSelection());
